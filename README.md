@@ -35,7 +35,7 @@ Votrr is a mobile voting application prototype that demonstrates secure voter au
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/votrr.git
+git clone https://github.com/retzonel/votrr_app.git
 cd votrr
 ```
 
