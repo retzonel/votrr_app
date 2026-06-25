@@ -41,12 +41,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Listen to auth state — navigate on success, show error on failure.
     ref.listen<AuthState>(authProvider, (previous, next) {
-      if (next is AuthAuthenticated) {
-        // Phase 4 will replace this with go_router navigation
-        Navigator.of(context).pushReplacementNamed('/home');
-      } else if (next is AuthError) {
+      if (next is AuthError) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(next.message),
@@ -202,7 +198,8 @@ class _LoginPageState extends ConsumerState<LoginPage> {
           ),
           validator: (value) {
             if (value == null || value.isEmpty) return 'Password is required.';
-            if (value.length < 6) return 'Password must be at least 6 characters.';
+            if (value.length < 6)
+              return 'Password must be at least 6 characters.';
             return null;
           },
         ),

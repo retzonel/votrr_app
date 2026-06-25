@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:votrr/core/router/app_routes.dart';
 import '../data/biometric_provider.dart';
 import '../data/biometric_service.dart';
 import '../../auth/presentation/login_page.dart'; // we create this next phase
@@ -31,13 +33,11 @@ class _BiometricGatePageState extends ConsumerState<BiometricGatePage> {
 
     switch (result) {
       case BiometricResult.success:
-        // Navigate to Login — replace so user can't back-navigate to gate
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const LoginPage()),
-        );
+        if (mounted) context.go(AppRoutes.login);
 
       case BiometricResult.failure:
-        setState(() => _errorMessage = 'Authentication failed. Please try again.');
+        setState(
+            () => _errorMessage = 'Authentication failed. Please try again.');
 
       case BiometricResult.notAvailable:
         setState(() => _errorMessage =

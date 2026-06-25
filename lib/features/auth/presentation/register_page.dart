@@ -44,9 +44,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     ref.listen<AuthState>(authProvider, (previous, next) {
-      if (next is AuthAuthenticated) {
-        Navigator.of(context).pushReplacementNamed('/home');
-      } else if (next is AuthError) {
+      // router handles navigation automatically via redirect.
+      // handle errors here.
+      if (next is AuthError) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(next.message),
@@ -174,10 +174,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           hintText: 'Re-enter your password',
           prefixIcon: const Icon(Icons.lock_outline),
           suffixIcon: IconButton(
-            icon: Icon(
-                _confirmVisible ? Icons.visibility_off : Icons.visibility),
-            onPressed: () =>
-                setState(() => _confirmVisible = !_confirmVisible),
+            icon:
+                Icon(_confirmVisible ? Icons.visibility_off : Icons.visibility),
+            onPressed: () => setState(() => _confirmVisible = !_confirmVisible),
           ),
         ),
         validator: (value) {
