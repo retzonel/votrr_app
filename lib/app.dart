@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:votrr/core/theme/app_theme.dart';
 import 'package:votrr/features/auth/presentation/biometric_gate_page.dart';
+import 'package:votrr/features/home/presentation/home_page.dart';
 
 class VotrrApp extends StatelessWidget {
   const VotrrApp({super.key});
@@ -12,6 +13,9 @@ class VotrrApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       home: const BiometricGatePage(),
+      routes: {
+        '/home' : (_) => const HomePage()
+      },
     );
   }
 }
