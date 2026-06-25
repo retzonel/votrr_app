@@ -1,146 +1,87 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import '../constants/app_colors.dart';
-import '../constants/app_dimensions.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  AppTheme._();
+  static const Color primaryGreen = Color(0xFF008751);
+  static const Color deepGreen = Color(0xFF005c36);
+  static const Color white = Colors.white;
+  static const Color offWhite = Color(0xFFF5F7F5);
+  static const Color lightGrey = Color(0xFFE8EDE8);
+  static const Color textDark = Color(0xFF1A2E1A);
+  static const Color textMuted = Color(0xFF6B7F6B);
+  static const Color errorRed = Color(0xFFD32F2F);
 
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: AppColors.primaryGreen,
-        primary: AppColors.primaryGreen,
-        onPrimary: AppColors.white,
-        secondary: AppColors.secondaryNavy,
-        onSecondary: AppColors.white,
-        surface: AppColors.surface,
-        onSurface: AppColors.textPrimary,
-        error: AppColors.error,
-        background: AppColors.background,
-        
+        seedColor: primaryGreen,
+        primary: primaryGreen,
+        onPrimary: white,
+        surface: white,
+        onSurface: textDark,
+        error: errorRed,
       ),
-
-      // Scaffold (screen background)
-      scaffoldBackgroundColor: AppColors.background,
-
-      // AppBar styling
-      appBarTheme: const AppBarTheme(
-        backgroundColor: AppColors.primaryGreen,
-        foregroundColor: AppColors.white,
-        elevation: 0,
-        centerTitle: true,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.transparent,
-          statusBarIconBrightness: Brightness.light,
+      scaffoldBackgroundColor: offWhite,
+      textTheme: GoogleFonts.interTextTheme().copyWith(
+        displayLarge: GoogleFonts.inter(
+          fontSize: 32,
+          fontWeight: FontWeight.w700,
+          color: textDark,
         ),
-        titleTextStyle: TextStyle(
-          color: AppColors.white,
+        headlineMedium: GoogleFonts.inter(
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
+          color: textDark,
+        ),
+        titleLarge: GoogleFonts.inter(
           fontSize: 18,
           fontWeight: FontWeight.w600,
-          letterSpacing: 0.5,
+          color: textDark,
+        ),
+        bodyLarge: GoogleFonts.inter(
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+          color: textDark,
+        ),
+        bodyMedium: GoogleFonts.inter(
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+          color: textMuted,
         ),
       ),
-
-      // Elevated Button (primary CTA buttons)
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primaryGreen,
-          foregroundColor: AppColors.white,
-          minimumSize: const Size.fromHeight(AppDimensions.buttonHeight),
+          backgroundColor: primaryGreen,
+          foregroundColor: white,
+          minimumSize: const Size(double.infinity, 56),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppDimensions.radiusMD),
+            borderRadius: BorderRadius.circular(12),
           ),
-          elevation: 0,
-          textStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-            letterSpacing: 0.5,
-          ),
-        ),
-      ),
-
-      // Outlined Button (secondary actions)
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: OutlinedButton.styleFrom(
-          foregroundColor: AppColors.primaryGreen,
-          side: const BorderSide(color: AppColors.primaryGreen, width: 1.5),
-          minimumSize: const Size.fromHeight(AppDimensions.buttonHeight),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppDimensions.radiusMD),
-          ),
-          textStyle: const TextStyle(
+          textStyle: GoogleFonts.inter(
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
         ),
       ),
-
-      // Input Fields
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.white,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: AppDimensions.spaceMD,
-          vertical: AppDimensions.spaceMD,
-        ),
+        fillColor: white,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimensions.radiusMD),
-          borderSide: const BorderSide(color: AppColors.lightGrey),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: lightGrey),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimensions.radiusMD),
-          borderSide: const BorderSide(color: AppColors.lightGrey, width: 1.5),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: lightGrey),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimensions.radiusMD),
-          borderSide:
-              const BorderSide(color: AppColors.primaryGreen, width: 2.0),
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: primaryGreen, width: 2),
         ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimensions.radiusMD),
-          borderSide: const BorderSide(color: AppColors.error, width: 1.5),
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(AppDimensions.radiusMD),
-          borderSide: const BorderSide(color: AppColors.error, width: 2.0),
-        ),
-        labelStyle: const TextStyle(color: AppColors.textSecondary),
-        hintStyle:
-            const TextStyle(color: AppColors.textHint, fontSize: 14),
-        errorStyle: const TextStyle(color: AppColors.error, fontSize: 12),
-      ),
-
-      // Card Theme
-      cardTheme: CardThemeData(
-        color: AppColors.surface,
-        elevation: AppDimensions.cardElevation,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppDimensions.cardRadius),
-        ),
-        margin: EdgeInsets.zero,
-      ),
-
-      // Bottom Navigation
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: AppColors.white,
-        selectedItemColor: AppColors.primaryGreen,
-        unselectedItemColor: AppColors.mediumGrey,
-        selectedLabelStyle: TextStyle(
-          fontWeight: FontWeight.w600,
-          fontSize: 12,
-        ),
-        unselectedLabelStyle: TextStyle(fontSize: 12),
-        type: BottomNavigationBarType.fixed,
-        elevation: 8,
-      ),
-
-      // Snackbar (for error/success messages)
-      snackBarTheme: SnackBarThemeData(
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(AppDimensions.radiusMD),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 16,
         ),
       ),
     );
