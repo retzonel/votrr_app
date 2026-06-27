@@ -112,5 +112,3 @@ Null
 ## Contact
 
 Nwocha Godswill - [@retzonel](https://twitter.com/retzonel) - nwochagodswill@gmail.com
-
-Project Link: [https://github.com/retzonel/votrr_app](https://github.com/retzonel/votrr_app)
