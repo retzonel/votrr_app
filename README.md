@@ -46,8 +46,8 @@ flutter pub get
 
 3. Set up Firebase
 - Create a Firebase project
-- Add your Android/iOS apps
-- Download `google-services.json` (Android) and `GoogleService-Info.plist` (iOS)
+- Add your Android apps
+- Download `google-services.json` (Android)
 - Place them in the respective directories
 
 4. Configure environment
@@ -84,18 +84,18 @@ lib/
 - Theme system and constants
 - Core widgets and navigation
 
-**Phase 2: Auth Flow** 🔄 In Progress
+**Phase 2: Auth Flow** ✅ Complete
 - Splash screen, biometric gate, login
 - Firebase Auth integration
 
-**Phase 3: Face Verification** 🔄 In Progress
+**Phase 3: Face Verification** ✅ Complete
 - Camera integration
 - ML Kit face detection
 
-**Phase 4: Main App** 🔄 In Progress
+**Phase 4: Main App** ✅ Complete
 - Bottom navigation, home, voting, results
 
-**Phase 5-6: Polish & Deployment** 📅 Planned
+**Phase 5-6: Polish & Deployment** ✅ Complete
 
 ## Contributing
 
