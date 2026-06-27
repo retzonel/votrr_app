@@ -2,8 +2,7 @@ class VinValidator {
   static const int vinLength = 19;
   static final RegExp _alphanumeric = RegExp(r'^[A-Z0-9]+$');
 
-  // Returns null if valid, or an error string if invalid.
-  // This is the Flutter form validator convention.
+  // form validation
   static String? validate(String? value) {
     if (value == null || value.isEmpty) {
       return 'Voter ID is required.';
@@ -18,9 +17,7 @@ class VinValidator {
     return null;
   }
 
-  // Formats VIN into groups of 4 for readability as the user types:
-  // 1234567890ABC123456 → 1234 5678 90AB C123 456
-  // We'll use this in the text field formatter.
+  // for formmating the VIN to all caps and ints
   static String format(String raw) {
     final clean = raw.toUpperCase().replaceAll(' ', '');
     final buffer = StringBuffer();
@@ -31,7 +28,7 @@ class VinValidator {
     return buffer.toString();
   }
 
-  // Strip spaces before sending to Firebase.
+  // for removing spaces from strings before sending i.e if any
   static String normalize(String formatted) {
     return formatted.toUpperCase().replaceAll(' ', '');
   }

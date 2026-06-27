@@ -7,8 +7,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
   final AuthRepository _repository;
 
   AuthNotifier(this._repository) : super(const AuthInitial()) {
-    // Check if user is already logged in when app starts.
-    // Firebase persists sessions, so returning users are auto-logged-in.
+    // is user logged in?
+    // if yes, auto-log them in
     final currentUser = _repository.currentUser;
     if (currentUser != null) {
       state = AuthAuthenticated(currentUser);
@@ -52,14 +52,13 @@ class AuthNotifier extends StateNotifier<AuthState> {
     state = const AuthUnauthenticated();
   }
 
-  // Firebase gives error codes like 'user-not-found'.
-  // We translate those into human-readable messages.
+  //catch firebase error and map to user freindly responses for display
   String _mapFirebaseError(FirebaseAuthException e) {
     switch (e.code) {
       case 'user-not-found':
       case 'wrong-password':
       case 'invalid-credential':
-        // Deliberately vague — don't tell attackers which part was wrong
+        // be vague so attackers dont know which part was wrong
         return 'Invalid Voter ID or password.';
       case 'invalid-email':
         return 'Invalid Voter ID format.';
@@ -77,7 +76,7 @@ class AuthNotifier extends StateNotifier<AuthState> {
   }
 }
 
-// The provider — this is what the UI imports.
+//providers the services to the ui
 final authRepositoryProvider = Provider<AuthRepository>((ref) {
   return AuthRepository();
 });

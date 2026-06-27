@@ -7,7 +7,7 @@ class FeedRepository {
   FeedRepository({FirebaseFirestore? db})
       : _db = db ?? FirebaseFirestore.instance;
 
-  // Real-time stream of election config
+  // real-time stream of election config
   Stream<ElectionConfig> electionConfigStream() {
     return _db
         .collection('election')
@@ -16,8 +16,8 @@ class FeedRepository {
         .map(ElectionConfig.fromDoc);
   }
 
-  // Real-time stream of vote counts per candidate.
-  // Returns a map of candidateId → count.
+  // real-time stream of vote counts per candidate.
+  // returns a map of candidateId and maps to count.
   Stream<Map<String, int>> voteCountsStream() {
     return _db.collection('votes').snapshots().map((snapshot) {
       final counts = <String, int>{};
@@ -31,7 +31,7 @@ class FeedRepository {
     });
   }
 
-  // Real-time stream of candidates (reuse from vote feature)
+  // real-time stream of candidates (reuse from vote feature)
   Stream<List<Map<String, dynamic>>> candidatesStream() {
     return _db
         .collection('candidates')

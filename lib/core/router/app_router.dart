@@ -13,11 +13,7 @@ import '../../features/feed/presentation/feed_page.dart';
 import '../../features/polling/presentation/polling_page.dart';
 import '../../features/settings/presentation/settings_page.dart';
 
-// A provider that exposes the router to the whole app.
-// It takes a ref so it can watch auth state for redirects.
 final appRouterProvider = Provider<GoRouter>((ref) {
-  // We use a ValueNotifier as a listenable so go_router
-  // re-evaluates the redirect whenever auth state changes.
   final authNotifier = _AuthStateNotifier(ref);
 
   return GoRouter(
@@ -32,19 +28,16 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           location == AppRoutes.register ||
           location == AppRoutes.biometric;
 
-      // Not logged in and trying to reach a protected route → login
       if (!isAuthenticated && !isOnAuthFlow) {
         return AppRoutes.login;
       }
 
-      // Already logged in but on login/register → skip to home
-      // (biometric gate is exempt — it should always show on launch)
       if (isAuthenticated &&
           (location == AppRoutes.login || location == AppRoutes.register)) {
         return AppRoutes.vote;
       }
 
-      return null; // no redirect needed
+      return null;
     },
     routes: [
       GoRoute(
@@ -59,8 +52,6 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: AppRoutes.register,
         builder: (context, state) => const RegisterPage(),
       ),
-
-      // Shell route — wraps the four tabs with persistent bottom nav
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return MainShell(navigationShell: navigationShell);
@@ -104,8 +95,6 @@ final appRouterProvider = Provider<GoRouter>((ref) {
   );
 });
 
-// go_router needs a Listenable to know when to re-run redirect.
-// This bridges Riverpod's state into something go_router understands.
 class _AuthStateNotifier extends ChangeNotifier {
   _AuthStateNotifier(Ref ref) {
     ref.listen<AuthState>(authProvider, (previous, next) {

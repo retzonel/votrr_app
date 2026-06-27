@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:votrr/core/utils/theme_utils.dart';
+import 'package:votrr/features/vote/presentation/face_verification_page.dart';
 import '../../../core/theme/app_theme.dart';
 import '../data/vote_notifier.dart';
 import '../domain/candidate.dart';
@@ -30,8 +31,6 @@ class VotePage extends ConsumerWidget {
   }
 }
 
-// ─── Loading ────────────────────────────────────────────────────────────────
-
 class _LoadingView extends StatelessWidget {
   final String message;
   const _LoadingView({this.message = 'Loading candidates...'});
@@ -50,8 +49,6 @@ class _LoadingView extends StatelessWidget {
     );
   }
 }
-
-// ─── Error ───────────────────────────────────────────────────────────────────
 
 class _ErrorView extends ConsumerWidget {
   final VoteError state;
@@ -83,8 +80,6 @@ class _ErrorView extends ConsumerWidget {
     );
   }
 }
-
-// ─── Already Voted ───────────────────────────────────────────────────────────
 
 class _SubmittedView extends StatelessWidget {
   final VoteSubmitted state;
@@ -165,8 +160,6 @@ class _SubmittedView extends StatelessWidget {
     );
   }
 }
-
-// ─── Ready to Vote ───────────────────────────────────────────────────────────
 
 class _ReadyView extends ConsumerWidget {
   final VoteReady state;
@@ -290,7 +283,8 @@ class _ReadyView extends ConsumerWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: Text(
           'Confirm Your Vote',
-          style: TextStyle(fontWeight: FontWeight.w700, color: context.primaryText),
+          style: TextStyle(
+              fontWeight: FontWeight.w700, color: context.primaryText),
         ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -315,10 +309,9 @@ class _ReadyView extends ConsumerWidget {
                   Text(
                     candidate.name,
                     style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16,
-                      color: context.mutedText
-                    ),
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                        color: context.mutedText),
                   ),
                   const SizedBox(height: 2),
                   Text(
@@ -345,8 +338,7 @@ class _ReadyView extends ConsumerWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: Text('Cancel',
-                style: TextStyle(color: context.mutedText)),
+            child: Text('Cancel', style: TextStyle(color: context.mutedText)),
           ),
           ElevatedButton(
             onPressed: () => Navigator.of(context).pop(true),
@@ -357,12 +349,19 @@ class _ReadyView extends ConsumerWidget {
     );
 
     if (confirmed == true) {
-      ref.read(voteProvider.notifier).submitVote();
+      final faceVerified = await Navigator.of(context).push<bool>(
+        MaterialPageRoute(
+          builder: (_) => const FaceVerificationPage(),
+          fullscreenDialog: true,
+        ),
+      );
+
+      if (faceVerified == true) {
+        ref.read(voteProvider.notifier).submitVote();
+      }
     }
   }
 }
-
-// ─── Candidate Card ──────────────────────────────────────────────────────────
 
 class _CandidateCard extends StatelessWidget {
   final Candidate candidate;
@@ -413,7 +412,6 @@ class _CandidateCard extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: Row(
               children: [
-                // Party colour accent bar
                 Container(
                   width: 4,
                   height: 56,
@@ -423,7 +421,6 @@ class _CandidateCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 14),
-                // Avatar
                 CircleAvatar(
                   radius: 28,
                   backgroundColor: AppTheme.lightGrey,
@@ -437,7 +434,6 @@ class _CandidateCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 14),
-                // Name + party
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -445,10 +441,9 @@ class _CandidateCard extends StatelessWidget {
                       Text(
                         candidate.name,
                         style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 15,
-                          color: context.primaryText
-                        ),
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                            color: context.primaryText),
                       ),
                       const SizedBox(height: 2),
                       Text(
@@ -461,7 +456,6 @@ class _CandidateCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                // Selection indicator
                 AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
                   child: isSelected

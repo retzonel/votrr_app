@@ -2,11 +2,11 @@ class PollingLocation {
   final String id;
   final String name;
   final String address;
-  final String lga;         // Local Government Area
+  final String lga;
   final String state;
   final String openTime;
   final String closeTime;
-  final bool isAccessible;  // wheelchair accessible
+  final bool isAccessible;
 
   const PollingLocation({
     required this.id,

@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-// Converts a VIN to a Firebase-compatible email.
-// This is the only place this conversion lives.
+// coonvert mock VIn to email so we can save on firebase firestore
 String _vinToEmail(String vin) => '${vin.trim().toLowerCase()}@votrr.ng';
 
 class AuthRepository {
@@ -10,11 +9,11 @@ class AuthRepository {
   AuthRepository({FirebaseAuth? firebaseAuth})
       : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
 
-  // The currently signed-in Firebase user, or null.
+  // she currently signed-in Firebase user, or null.
   User? get currentUser => _firebaseAuth.currentUser;
 
-  // Stream that emits whenever auth state changes.
-  // go_router will listen to this
+  // stream that emits whenever auth state changes.
+  // go_router listens
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
   Future<UserCredential> registerWithVin({

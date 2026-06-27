@@ -11,7 +11,6 @@ class AppTheme {
   static const Color textMuted = Color(0xFF6B7F6B);
   static const Color errorRed = Color(0xFFD32F2F);
 
-  // Dark mode surface colors
   static const Color darkSurface = Color(0xFF121212);
   static const Color darkCard = Color(0xFF1E1E1E);
   static const Color darkBorder = Color(0xFF2C2C2C);
@@ -47,8 +46,8 @@ class AppTheme {
           backgroundColor: primaryGreen,
           foregroundColor: white,
           minimumSize: const Size(double.infinity, 56),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           textStyle:
               GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600),
         ),
@@ -86,33 +85,23 @@ class AppTheme {
       scaffoldBackgroundColor: darkSurface,
       textTheme: GoogleFonts.interTextTheme().copyWith(
         displayLarge: GoogleFonts.inter(
-            fontSize: 32,
-            fontWeight: FontWeight.w700,
-            color: darkTextPrimary),
+            fontSize: 32, fontWeight: FontWeight.w700, color: darkTextPrimary),
         headlineMedium: GoogleFonts.inter(
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
-            color: darkTextPrimary),
+            fontSize: 24, fontWeight: FontWeight.w600, color: darkTextPrimary),
         titleLarge: GoogleFonts.inter(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: darkTextPrimary),
+            fontSize: 18, fontWeight: FontWeight.w600, color: darkTextPrimary),
         bodyLarge: GoogleFonts.inter(
-            fontSize: 16,
-            fontWeight: FontWeight.w400,
-            color: darkTextPrimary),
+            fontSize: 16, fontWeight: FontWeight.w400, color: darkTextPrimary),
         bodyMedium: GoogleFonts.inter(
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-            color: darkTextMuted),
+            fontSize: 14, fontWeight: FontWeight.w400, color: darkTextMuted),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: primaryGreen,
           foregroundColor: white,
           minimumSize: const Size(double.infinity, 56),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           textStyle:
               GoogleFonts.inter(fontSize: 16, fontWeight: FontWeight.w600),
         ),

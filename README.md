@@ -68,11 +68,12 @@ lib/
 ├── core/          # Shared infrastructure (theme, constants, navigation)
 ├── features/      # Feature-first modules
 │   ├── auth/      # Authentication
-│   ├── face_verification/  # Face detection
-│   ├── home/      # Home dashboard
-│   ├── voting/    # Voting functionality
-│   ├── results/   # Results display
-│   └── profile/   # User profile
+│   ├── feed/      # Live feed
+│   ├── polling/   # General information on elections
+│   ├── shell/     # Main app navigation
+│   └── settings/  # Settings and user
+│   ├── vote/      # Voting functionality
+└── app.dart       # App itself
 └── main.dart      # Entry point
 ```
 

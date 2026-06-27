@@ -12,12 +12,9 @@ class VoteNotifier extends StateNotifier<VoteState> {
   Future<void> load() async {
     state = const VoteLoading();
     try {
-      // Check vote status first — if already voted, we don't need candidates
       final existingVote = await _repository.getUserVote();
 
       if (existingVote != null) {
-        // Fetch candidates only to get the name for display
-        // If this fails, we still show submitted with a fallback name
         String candidateName = 'your candidate';
         try {
           final candidates = await _repository.getCandidates();
@@ -26,9 +23,7 @@ class VoteNotifier extends StateNotifier<VoteState> {
             orElse: () => throw Exception('not found'),
           );
           candidateName = voted.name;
-        } catch (_) {
-          // Non-critical — we know they voted, name is just display
-        }
+        } catch (_) {}
 
         state = VoteSubmitted(
           votedCandidateId: existingVote,
@@ -37,7 +32,6 @@ class VoteNotifier extends StateNotifier<VoteState> {
         return;
       }
 
-      // Not voted yet — load everything
       final results = await Future.wait([
         _repository.getCandidates(),
         _repository.isElectionOpen(),
@@ -77,7 +71,6 @@ class VoteNotifier extends StateNotifier<VoteState> {
         votedCandidateName: candidate.name,
       );
     } catch (e) {
-      // If Firestore rules reject it (already voted), or network error
       state =
           const VoteError('Failed to submit vote. You may have already voted.');
     }

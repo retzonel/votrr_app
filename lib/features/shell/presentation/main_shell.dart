@@ -77,8 +77,6 @@ class MainShell extends StatelessWidget {
   void _onTap(int index) {
     navigationShell.goBranch(
       index,
-      // If tapping the current tab, go back to its root.
-      // Same behaviour as Instagram/YouTube bottom nav.
       initialLocation: index == navigationShell.currentIndex,
     );
   }

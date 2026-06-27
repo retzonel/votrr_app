@@ -14,23 +14,17 @@ class VoteRepository {
 
   String get _uid => _auth.currentUser!.uid;
 
-  // Fetch all candidates ordered by the 'order' field
   Future<List<Candidate>> getCandidates() async {
-    final snapshot = await _db
-        .collection('candidates')
-        .orderBy('order')
-        .get();
+    final snapshot = await _db.collection('candidates').orderBy('order').get();
     return snapshot.docs.map(Candidate.fromDoc).toList();
   }
 
-  // Returns the candidateId this user voted for, or null if not voted
   Future<String?> getUserVote() async {
     final doc = await _db.collection('votes').doc(_uid).get();
     if (!doc.exists) return null;
     return doc.data()?['candidateId'] as String?;
   }
 
-  // Submits the vote — Firestore rules enforce one-vote-only
   Future<void> castVote({
     required String candidateId,
     required String candidateName,
@@ -43,7 +37,6 @@ class VoteRepository {
     });
   }
 
-  // Check if election is open
   Future<bool> isElectionOpen() async {
     final doc = await _db.collection('election').doc('config').get();
     if (!doc.exists) return false;

@@ -14,7 +14,6 @@ class SettingsPage extends ConsumerWidget {
     final user = ref.watch(authProvider);
     final scheme = Theme.of(context).colorScheme;
 
-    // Derive display VIN from Firebase email (reverse the _vinToEmail transform)
     final email = ref.watch(authRepositoryProvider).currentUser?.email ?? '';
     final vin = email.replaceAll('@votrr.ng', '').toUpperCase();
     final formattedVin = _formatVin(vin);
@@ -217,8 +216,7 @@ class SettingsPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildAccountCard(
-      BuildContext context, WidgetRef ref, bool isDark) {
+  Widget _buildAccountCard(BuildContext context, WidgetRef ref, bool isDark) {
     return _SettingsCard(
       isDark: isDark,
       children: [
@@ -239,8 +237,7 @@ class SettingsPage extends ConsumerWidget {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         title: const Text(
           'Sign Out',
           style: TextStyle(fontWeight: FontWeight.w700),
@@ -272,8 +269,6 @@ class SettingsPage extends ConsumerWidget {
     }
   }
 }
-
-// ─── Reusable Settings Widgets ────────────────────────────────────────────────
 
 class _SettingsCard extends StatelessWidget {
   final List<Widget> children;
@@ -365,9 +360,8 @@ class _SettingsTile extends StatelessWidget {
                     subtitle,
                     style: TextStyle(
                       fontSize: 12,
-                      color: isDark
-                          ? AppTheme.darkTextMuted
-                          : AppTheme.textMuted,
+                      color:
+                          isDark ? AppTheme.darkTextMuted : AppTheme.textMuted,
                     ),
                   ),
                 ],

@@ -23,9 +23,11 @@ class PollingPage extends ConsumerWidget {
                 configAsync.valueOrNull?.title ?? 'Election',
               ),
             ),
-            SliverToBoxAdapter(child: _buildSectionLabel('How to Vote', context)),
+            SliverToBoxAdapter(
+                child: _buildSectionLabel('How to Vote', context)),
             SliverToBoxAdapter(child: _buildInstructions()),
-            SliverToBoxAdapter(child: _buildSectionLabel('Polling Locations', context)),
+            SliverToBoxAdapter(
+                child: _buildSectionLabel('Polling Locations', context)),
             SliverToBoxAdapter(child: _buildLocationSubtitle()),
             _buildLocationList(),
             const SliverToBoxAdapter(child: SizedBox(height: 32)),
@@ -44,10 +46,9 @@ class PollingPage extends ConsumerWidget {
           Text(
             'Polling Info',
             style: TextStyle(
-              fontSize: 26,
-              fontWeight: FontWeight.w700,
-              color: context.primaryText
-            ),
+                fontSize: 26,
+                fontWeight: FontWeight.w700,
+                color: context.primaryText),
           ),
           const SizedBox(height: 4),
           const Text(
@@ -135,10 +136,9 @@ class PollingPage extends ConsumerWidget {
       child: Text(
         label,
         style: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.w700,
-          color: context.primaryText
-        ),
+            fontSize: 18,
+            fontWeight: FontWeight.w700,
+            color: context.primaryText),
       ),
     );
   }
@@ -179,8 +179,6 @@ class PollingPage extends ConsumerWidget {
     );
   }
 }
-
-// ─── Supporting Widgets ───────────────────────────────────────────────────────
 
 class _InfoRow extends StatelessWidget {
   final IconData icon;
@@ -228,7 +226,6 @@ class _InstructionCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Step number circle
           Container(
             width: 40,
             height: 40,
@@ -248,7 +245,6 @@ class _InstructionCard extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 14),
-          // Content
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,7 +267,6 @@ class _InstructionCard extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 12),
-                // Connector line (except last item)
                 if (instruction.step != '06')
                   Padding(
                     padding: const EdgeInsets.only(left: 0),

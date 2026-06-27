@@ -73,7 +73,6 @@ class FeedPage extends ConsumerWidget {
                 ),
               ),
               const Spacer(),
-              // Live indicator dot
               _LiveDot(),
             ],
           ),
@@ -97,14 +96,12 @@ class FeedPage extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 16),
-          // Status chip
           configAsync.when(
             data: (config) => _StatusChip(isOpen: config.isOpen),
             loading: () => const SizedBox.shrink(),
             error: (_, __) => const SizedBox.shrink(),
           ),
           const SizedBox(height: 16),
-          // Countdown
           countdownAsync.when(
             data: (duration) => _CountdownDisplay(duration: duration),
             loading: () => const SizedBox.shrink(),
@@ -149,17 +146,13 @@ class FeedPage extends ConsumerWidget {
                   Text(
                     '$total',
                     style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                      color: context.primaryText
-                    ),
+                        fontSize: 28,
+                        fontWeight: FontWeight.w800,
+                        color: context.primaryText),
                   ),
                   Text(
                     'Total Votes Cast',
-                    style: TextStyle(
-                      fontSize: 13,
-                      color: context.mutedText
-                    ),
+                    style: TextStyle(fontSize: 13, color: context.mutedText),
                   ),
                 ],
               ),
@@ -225,8 +218,6 @@ class FeedPage extends ConsumerWidget {
     );
   }
 }
-
-// ─── Supporting Widgets ───────────────────────────────────────────────────────
 
 class _LiveDot extends StatefulWidget {
   @override
@@ -523,7 +514,6 @@ class _CandidateResultCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 12),
-          // Animated progress bar
           ClipRRect(
             borderRadius: BorderRadius.circular(4),
             child: TweenAnimationBuilder<double>(
