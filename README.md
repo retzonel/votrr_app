@@ -87,6 +87,9 @@ lib/
 **Phase 2: Auth Flow** ✅ Complete
 - Splash screen, biometric gate, login
 - Firebase Auth integration
+<img width="720" height="1600" alt="Screenshot_20260626-025513" src="https://github.com/user-attachments/assets/c1275d8f-bef1-4d80-b85e-cd8b29e4b0fd" />
+<img width="720" height="1600" alt="Screenshot_20260626-025619" src="https://github.com/user-attachments/assets/2b83def1-6e74-4e4b-b25e-ca63a5dc2832" />
+<img width="720" height="1600" alt="Screenshot_20260626-025622" src="https://github.com/user-attachments/assets/9de47abd-dea9-4b7f-a116-d5479cff9cfb" />
 
 **Phase 3: Face Verification** ✅ Complete
 - Camera integration
@@ -94,6 +97,8 @@ lib/
 
 **Phase 4: Main App** ✅ Complete
 - Bottom navigation, home, voting, results
+<img width="720" height="1600" alt="Screenshot_20260626-025609" src="https://github.com/user-attachments/assets/1f520d54-ac47-46b0-9c05-5636fbc526b4" />
+
 
 **Phase 5-6: Polish & Deployment** ✅ Complete
 
