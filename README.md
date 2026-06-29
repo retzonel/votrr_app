@@ -54,6 +54,8 @@ flutter pub get
 ```bash
 cp .env.example .env
 # Edit .env with your Firebase project ID
+flutterfire configure
+# Generate firebase_options.dart
 ```
 
 5. Run the app
@@ -73,7 +75,7 @@ lib/
 │   ├── shell/     # Main app navigation
 │   └── settings/  # Settings and user
 │   ├── vote/      # Voting functionality
-└── app.dart       # App itself
+└── app.dart       # the App itself
 └── main.dart      # Entry point
 ```
 
@@ -98,7 +100,6 @@ lib/
 **Phase 4: Main App** ✅ Complete
 - Bottom navigation, home, voting, results
 <img width="720" height="1600" alt="Screenshot_20260626-025609" src="https://github.com/user-attachments/assets/1f520d54-ac47-46b0-9c05-5636fbc526b4" />
-
 
 **Phase 5-6: Polish & Deployment** ✅ Complete
 
